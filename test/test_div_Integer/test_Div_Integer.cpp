@@ -2,16 +2,18 @@
 #include<stdlib.h>
 #include<time.h>
 #include<BigNumberCalc.h>
+#include<math.h>
+int strcmp2(char *a,char *b);
 int main(){
   srand(time(0));
   int t=0;
-  while(t<=10000){
+  while(t<10000){
   	  t++;
   	  char a[1024];
 	  char b[1024];
       char op;
 	  char ans2[1024];
-	  int A=rand();int B=rand(); 
+	  int A=rand();int B=rand();
 	  // if(rand()%2==0){
 	  // 	A=-A;
 	  // }
@@ -25,7 +27,7 @@ int main(){
 //    scanf("%d",&B);
     sprintf(a,"%d",A);
 	sprintf(b,"%d",B);
-	sprintf(ans2,"%d",A%B);
+	sprintf(ans2,"%d",A/B);
     int lena=strlen(a);
 	  int lenb=strlen(b);
 	  int lenans2=strlen(ans2);
@@ -49,7 +51,7 @@ int main(){
 	  }
 //	  else if(CMP==-1)
 	//  	ans2[0]='-';
-	  char *ans=BigNumber_Mod(a,b);
+	  char *ans=BigNumber_div_Integer(a,b);
 	  system("cls");
 	  printf("a:%s\n",a);
 	  printf("b:%s\n",b);
@@ -57,7 +59,7 @@ int main(){
 	  printf("ans:%s\n",ans);
 	  if(strcmp(ans,ans2)!=0){
 	  	system("pause");
-	  	char *ans=BigNumber_Mod(a,b);//9288 12
+	  	char *ans=BigNumber_div_Integer(a,b);//9288 12
 	  }
 	  free(ans);
 	  printf("\r    ");
@@ -66,4 +68,12 @@ int main(){
   }
   printf("³É¹¦\n");
   system("pause");
+}
+int strcmp2(char *a,char *b){
+	double af=atof(a);
+	double bf=atof(b);
+	if(fabs(af-bf)<0.01){
+		return 0;
+	}
+	return -1;
 }
